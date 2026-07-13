@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #017B92;
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 40px;
+}
+
+#fishButton {
+    position: fixed;
+    top: 35%;
+    left: 40%;
+    height: 30vh;
+    width: 30vh;
+    background-color: #ff0000;
+    border: 12px solid #000000;
+    padding: 30px 30px;
+    font-size: 16px;
+    shape-outside: circle();
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+#fishButton:hover {
+    background-color: #ff4d4d;
+    border-color: #272727;
+    transform: scale(1.05);
+}
+
+#fishButton:active {
+    background-color: #8f0000;
+    border-color: #000000;
+    transform: scale(1);
+}
+
+.fish {
+    position: absolute;
+    max-width: 20%;
+    height: auto;
+    top: 0px;
+    left: -290px;
+}
