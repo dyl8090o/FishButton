@@ -48,28 +48,88 @@ document.addEventListener('DOMContentLoaded', function() {
 function fishBehavior(fish, face) {
 
     const randomHeight = Math.floor(Math.random() * (window.innerHeight - 300));
+    const smallScreen = window.matchMedia(("max-width: 1439px"))
+    const smallerScreen = window.matchMedia(("max-width: 484px"))
 
-    if (face === 1) {
+    if (smallScreen.matches){
+            if (face === 1) {
             fish.animate([
-        { transform: `translate(-300px, ${randomHeight}px)` },
+        { transform: `translate(0vh, ${randomHeight}px)` },
         { transform: `translate(120vw, ${randomHeight}px)` }
         ], {
-        duration: 5000,
+        duration: 6000,
         iterations: 1,
         fill: 'forwards'
     })
     } else {
         fish.animate([
             { transform: `translate(120vw, ${randomHeight}px)` },
-            { transform: `translate(-300px, ${randomHeight}px)` }
+            { transform: `translate(0vh, ${randomHeight}px)` }
         ], {
-            duration: 5000,
+            duration: 6000,
             iterations: 1,
             fill: 'forwards'
         });
-    }
 
-    setTimeout(() => {
+            setTimeout(() => {
         fish.remove();
-    }, 5000);
-}
+    }, 7000);
+
+
+    }
+    } else if (smallerScreen.matches) {
+
+         if (face === 1) {
+            fish.animate([
+        { transform: `translate(0vh, ${randomHeight}px)` },
+        { transform: `translate(160vw, ${randomHeight}px)` }
+        ], {
+        duration: 2500,
+        iterations: 1,
+        fill: 'forwards'
+    })
+    } else {
+        fish.animate([
+            { transform: `translate(160vw, ${randomHeight}px)` },
+            { transform: `translate(0vh, ${randomHeight}px)` }
+        ], {
+            duration: 2500,
+            iterations: 1,
+            fill: 'forwards'
+        });
+
+            setTimeout(() => {
+        fish.remove();
+    }, 3500);
+
+    }} else {
+
+         if (face === 1) {
+            fish.animate([
+        { transform: `translate(0vh, ${randomHeight}px)` },
+        { transform: `translate(200vw, ${randomHeight}px)` }
+        ], {
+        duration: 2500,
+        iterations: 1,
+        fill: 'forwards'
+    })
+    } else {
+        fish.animate([
+            { transform: `translate(200vw, ${randomHeight}px)` },
+            { transform: `translate(0vh, ${randomHeight}px)` }
+        ], {
+            duration: 2500,
+            iterations: 1,
+            fill: 'forwards'
+        });
+
+            setTimeout(() => {
+        fish.remove();
+    }, 3500);
+
+            setTimeout(() => {
+        fish.remove();
+    }, 3500);
+
+    }
+}}
