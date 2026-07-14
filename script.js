@@ -25,6 +25,20 @@ const fishFaces = [
     rightFishPics[Math.floor(Math.random() * rightFishPics.length)]
 ]
 
+function preloadImage(img)
+{
+    var img = new Image();
+      img.src = item.src;
+      return img;
+}
+
+function preloadImages(urls) {
+    return urls.map(preloadImage);
+}
+
+const preloadedRightFish = preloadImages(rightFishPics);
+const preloadedLeftFish = preloadImages(leftFishPics);
+
 
 document.addEventListener('DOMContentLoaded', function() {
 
