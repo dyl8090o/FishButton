@@ -125,7 +125,7 @@ function fishBehavior(fish, face) {
          if (face === 1) {
             fish.animate([
         { transform: `translate(0vh, ${randomHeight}px)` },
-        { transform: `translate(1 20vw, ${randomHeight}px)` }
+        { transform: `translate(120vw, ${randomHeight}px)` }
         ], {
         duration: 6000,
         iterations: 1,
