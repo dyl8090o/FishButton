@@ -11,6 +11,10 @@ const rightFishPics = [
     "Fish Pics/15.png",
     "Fish Pics/16.png",
     "Fish Pics/18.png",
+    "Fish Pics/12.png",
+    "Fish Pics/22.png",
+    "Fish Pics/24.png",
+    
 ]
 const leftFishPics = [
     "Fish Pics/2.png",
@@ -19,6 +23,10 @@ const leftFishPics = [
     "Fish Pics/10.png",
     "Fish Pics/17.png",
     "Fish Pics/19.png",
+    "Fish Pics/20.png",
+    "Fish Pics/21.png",
+    "Fish Pics/25.png",
+    "Fish Pics/23.png",
 ]
 const fishFaces = [
     leftFishPics[Math.floor(Math.random() * leftFishPics.length)],
@@ -124,7 +132,7 @@ function fishBehavior(fish, face) {
 
          if (face === 1) {
             fish.animate([
-        { transform: `translate(0vh, ${randomHeight}px)` },
+        { transform: `translate(-10vh, ${randomHeight}px)` },
         { transform: `translate(120vw, ${randomHeight}px)` }
         ], {
         duration: 6000,
@@ -134,7 +142,7 @@ function fishBehavior(fish, face) {
     } else {
         fish.animate([
             { transform: `translate(120vw, ${randomHeight}px)` },
-            { transform: `translate(0vh, ${randomHeight}px)` }
+            { transform: `translate(-10vh, ${randomHeight}px)` }
         ], {
             duration: 6000,
             iterations: 1,
