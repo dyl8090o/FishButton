@@ -33,6 +33,8 @@ const fishFaces = [
     rightFishPics[Math.floor(Math.random() * rightFishPics.length)]
 ]
 
+let seenFish = []
+
 function preloadImage(url)
 {
     var img = new Image();
@@ -47,6 +49,8 @@ function preloadImages(urls) {
 const preloadedRightFish = preloadImages(rightFishPics);
 const preloadedLeftFish = preloadImages(leftFishPics);
 
+let fishCounter = document.getElementById("fishCounter")
+fishCounter.textContent = ("Fish Seen: " + seenFish.length + "/" + (rightFishPics.length + leftFishPics.length))
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -63,6 +67,17 @@ document.addEventListener('DOMContentLoaded', function() {
         newFish.className = "fish";
         newFish.src = fishPics[Math.floor(Math.random() * fishPics.length)];
         document.body.appendChild(newFish)
+
+
+        if (!seenFish.includes(newFish.src)){
+            seenFish.push(newFish.src)
+            let fishCounter = document.getElementById("fishCounter")
+            fishCounter.textContent = ("Fish Seen: " + seenFish.length + "/" + (rightFishPics.length + leftFishPics.length))
+            console.log("added " + newFish.src + " to seenFish")
+        }
+
+
+
         fishBehavior(newFish, face)
     }
 })
