@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById("fishButton").onclick = function(){
 
-        const face = Math.random() < 0.5 ? 0 : 1;
+        let face = Math.random() < 0.5 ? 0 : 1;
         if (face === 0) {
             var fishPics = leftFishPics;
         } else {
@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
         newFish.src = fishPics[Math.floor(Math.random() * fishPics.length)];
         document.body.appendChild(newFish)
 
-
         if (!seenFish.includes(newFish.src)){
             seenFish.push(newFish.src)
             let fishCounter = document.getElementById("fishCounter")
@@ -76,26 +75,58 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("added " + newFish.src + " to seenFish")
         }
 
+        const flip = Math.random() < 0.5 ? 0 : 1;
+        if (flip === 0) {
+            console.log("Normal dircetion")
+            let scale = ""
+             fishBehavior(newFish, face, scale)
+        } else {
+            console.log("Flipped")
+            let scale = " scaleX(-1)"
+            if (face === 0){
+                face = 1
+                 fishBehavior(newFish, face, scale)
+            }else {
+                face = 0
+                 fishBehavior(newFish, face, scale)
+            }
+        }
 
 
-        fishBehavior(newFish, face)
+       
     }
+
+       document.addEventListener('touchmove', function (event) {
+  if (event.scale !== 1) {
+    event.preventDefault();
+  }
+}, { passive: false });
+
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function (event) {
+  const now = (new Date()).getTime();
+  if (now - lastTouchEnd <= 300) {
+    event.preventDefault();
+    lastTouchEnd = now;
+  }
+}, { passive: false });
+
 })
 
-function fishBehavior(fish, face) {
+function fishBehavior(fish, face, scale) {
 
     const randomHeight = Math.floor(Math.random() * (window.innerHeight - 300));
     const smallScreen = window.matchMedia("(max-width: 1439px)")
     const smallerScreen = window.matchMedia("(max-width: 484px)")
 
     if (smallerScreen.matches){
-
+    
         
         console.log("smallerScreen")
          if (face === 1) {
             fish.animate([
-        { transform: `translate(0vh, ${randomHeight}px)` },
-        { transform: `translate(200vw, ${randomHeight}px)` }
+        { transform: `translate(0vh, ${randomHeight}px)${scale}` },
+        { transform: `translate(200vw, ${randomHeight}px)${scale}` }
         ], {
         duration: 2500,
         iterations: 1,
@@ -103,8 +134,8 @@ function fishBehavior(fish, face) {
     })
     } else {
         fish.animate([
-            { transform: `translate(200vw, ${randomHeight}px)` },
-            { transform: `translate(0vh, ${randomHeight}px)` }
+            { transform: `translate(200vw, ${randomHeight}px)${scale}` },
+            { transform: `translate(0vh, ${randomHeight}px)${scale}` }
         ], {
             duration: 2500,
             iterations: 1,
@@ -121,8 +152,8 @@ function fishBehavior(fish, face) {
                 console.log("smallScreen")
             if (face === 1) {
             fish.animate([
-        { transform: `translate(0vh, ${randomHeight}px)` },
-        { transform: `translate(160vw, ${randomHeight}px)` }
+        { transform: `translate(0vh, ${randomHeight}px)${scale}` },
+        { transform: `translate(160vw, ${randomHeight}px)${scale}` }
         ], {
         duration: 4000,
         iterations: 1,
@@ -130,8 +161,8 @@ function fishBehavior(fish, face) {
     })
     } else {
         fish.animate([
-            { transform: `translate(160vw, ${randomHeight}px)` },
-            { transform: `translate(0vh, ${randomHeight}px)` }
+            { transform: `translate(160vw, ${randomHeight}px)${scale}` },
+            { transform: `translate(0vh, ${randomHeight}px)${scale}` }
         ], {
             duration: 4000,
             iterations: 1,
@@ -147,8 +178,8 @@ function fishBehavior(fish, face) {
 
          if (face === 1) {
             fish.animate([
-        { transform: `translate(-10vh, ${randomHeight}px)` },
-        { transform: `translate(120vw, ${randomHeight}px)` }
+        { transform: `translate(-10vh, ${randomHeight}px)${scale}` },
+        { transform: `translate(120vw, ${randomHeight}px)${scale}` }
         ], {
         duration: 6000,
         iterations: 1,
@@ -156,8 +187,8 @@ function fishBehavior(fish, face) {
     })
     } else {
         fish.animate([
-            { transform: `translate(120vw, ${randomHeight}px)` },
-            { transform: `translate(-10vh, ${randomHeight}px)` }
+            { transform: `translate(120vw, ${randomHeight}px)${scale}` },
+            { transform: `translate(-10vh, ${randomHeight}px)${scale}` }
         ], {
             duration: 6000,
             iterations: 1,

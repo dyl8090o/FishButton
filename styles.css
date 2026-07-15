@@ -29,12 +29,6 @@ body {
     transition: .2s ease;
 }
 
-#fishButton:hover {
-    background-color: #ff4d4d;
-    border-color: #272727;
-    transform: scale(1.05);
-}
-
 #fishButton:active {
     background-color: #8f0000;
     border-color: #000000;
@@ -47,4 +41,18 @@ body {
     height: auto;
     top: 0px;
     left: -290px;
+}
+
+.flipped {
+    transform: scaleX(-1) !important;
+}
+
+@media (hover: hover){
+
+    #fishButton:hover {
+    background-color: #ff4d4d;
+    border-color: #272727;
+    transform: scale(1.05);
+}
+
 }
