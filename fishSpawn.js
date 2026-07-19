@@ -466,19 +466,33 @@ function preloadImage(url)
 function preloadImages(urls) {
     return urls.map(preloadImage);
 }
-
+import { scoreChange  } from "./pointsScript.js";
 const preloadedRightFish = preloadImages(rightFishPics);
 const preloadedLeftFish = preloadImages(leftFishPics);
 
 let fishCounter = document.getElementById("fishCounter")
 fishCounter.textContent = ("Fish Seen: " + seenFish.length + "/" + (rightFishPics.length + leftFishPics.length))
 
-document.addEventListener('DOMContentLoaded', function() {
+function autoSpawner(){
+    console.log("spawner activates")
+    let autoTime = document.getElementById("autoTimeInput").value;
+    let autoOn = 0;
+    if (autoButton.classList.contains("autoButtonOn")){
+            autoOn=1;
+            console.log("Auto on: " + autoOn + " | Auto time: " + autoTime)
+            setTimeout(()=>{
+            console.log("Auto spawn, spawning fish...")
+            spawnFish();
+            scoreChange(1);
+            autoSpawner();
+        }, autoTime)
+        }else{
+            return;
+        }
+}
 
-    document.getElementById('fishButton').addEventListener('click', function(){
-
-        console.log("Button pushed (fish spawner)")
-        let face = Math.random() < 0.5 ? 0 : 1;
+function spawnFish(){
+    let face = Math.random() < 0.5 ? 0 : 1;
         if (face === 0) {
             var fishPics = leftFishPics;
         } else {
@@ -489,18 +503,7 @@ document.addEventListener('DOMContentLoaded', function() {
         newFish.className = "fish";
         newFish.src = fishPics[Math.floor(Math.random() * fishPics.length)];
         document.body.appendChild(newFish)
-
-
-        /* #region chanceSpawners */
         
-        let goldenSpawn = Math.random() < 0.5 ? 0 : 1;
-        if (goldenSpawn === 0) {
-            newFish.classList.add = "golden";
-            const maskValue = `url('${newFish.src}')`;
-        }
-        console.log(newFish.classList)
-        
-        /* #endregion */
 
         if (!seenFish.includes(newFish.src)){
             seenFish.push(newFish.src)
@@ -525,9 +528,27 @@ document.addEventListener('DOMContentLoaded', function() {
                  fishBehavior(newFish, face, scale)
             }
         }
+}
 
+document.addEventListener('DOMContentLoaded', function() {
 
-       
+    let autoOn = 0
+    document.getElementById('autoButton').addEventListener('click', function(){
+        let autoButton = document.getElementById("autoButton")
+
+        if (autoButton.classList.contains("autoButtonOn")){
+            autoButton.classList.remove("autoButtonOn");
+        }else{
+            autoButton.classList.add("autoButtonOn");
+            autoSpawner();
+        }
+        console.log(autoButton.classList)
+    })
+
+    document.getElementById('fishButton').addEventListener('click', function(){
+
+        console.log("Button pushed (fish spawner)")
+        spawnFish();
     })
 
        document.addEventListener('touchmove', function (event) {
@@ -552,6 +573,7 @@ function fishBehavior(fish, face, scale) {
     const randomHeight = Math.floor(Math.random() * (window.innerHeight - 300));
     const smallScreen = window.matchMedia("(max-width: 1439px)")
     const smallerScreen = window.matchMedia("(max-width: 484px)")
+
 
     if (smallerScreen.matches){
     

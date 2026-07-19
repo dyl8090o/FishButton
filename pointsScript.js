@@ -1,9 +1,11 @@
 let oldScore = null;
-let score = 0;
+export let score = 0;
 
-function scoreChange(){
+export function scoreChange(change){
 
         console.log("Changing score...");
+        score = score + change;
+        console.log("New score: " + score)
         const scoreDisplays = document.getElementById("scoreDisplay");
         oldScore = score;
         scoreDisplays.textContent = ("Fish: " + score);
@@ -12,8 +14,6 @@ function scoreChange(){
 document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('fishButton').addEventListener('click', function(){
-        score = score + 1;
-        console.log("New score: " + score)
-        scoreChange();
+        scoreChange(1);
     })
 })

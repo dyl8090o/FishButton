@@ -5,6 +5,12 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 body {
     background-color: #017B92;
     color: #e0e0e0;
@@ -28,6 +34,56 @@ body {
     cursor: pointer;
     z-index: 999;
     transition: .2s ease;
+}
+
+#autoTimeInput {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    height: 3vh;
+    width: 45px;
+    font-size: 16px;
+    text-align: center;
+    transform: translate(-3vh, 20vh);
+    background-color: #004f5f;
+    border-radius: 10px;
+    border: 10px none;
+    padding: 10px 5px;
+    color: #ffffff;
+    z-index: 999;
+}
+
+#autoButton {
+    position: fixed;
+    inset: 0;
+    cursor: pointer;
+    margin: auto;
+    height: 3vh;
+    width: 45px;
+    font-size: 16px;
+    text-align: center;
+    transform: translate(3vh, 20vh);
+    background-color: #004f5f;
+    border-radius: 10px;
+    border: 2px solid #002b33;
+    color: #a2d6e0;
+    z-index: 999;
+}
+
+.autoButtonOn{
+    position: fixed;
+    inset: 0;
+    cursor: pointer;
+    margin: auto;
+    height: 3vh;
+    width: 45px;
+    font-size: 16px;
+    text-align: center;
+    transform: translate(3vh, 20vh);
+    background-color: #002c35 !important;
+    border-radius: 10px;
+    border: 2px solid rgb(0, 6, 24) !important;
+    color: #4a6368 !important;
 }
 
 #fishButton:active {
