@@ -26,6 +26,7 @@ body {
     shape-outside: circle();
     border-radius: 50%;
     cursor: pointer;
+    z-index: 999;
     transition: .2s ease;
 }
 
@@ -41,6 +42,8 @@ body {
     height: auto;
     top: 0px;
     left: -290px;
+
+
 }
 
 .flipped {
